@@ -1,6 +1,6 @@
 ﻿namespace DotNetStandard.Interfaces
 {
-    interface IIdentifiable<out T>
+    public interface IIdentifiable<out T>
     {
         T Id { get;}
     }
