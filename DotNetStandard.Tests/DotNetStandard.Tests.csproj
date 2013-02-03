@@ -54,10 +54,21 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\Consumer.cs" />
+    <Compile Include="EventAggregatorTests.cs" />
+    <Compile Include="Models\EventTest.cs" />
+    <Compile Include="EventTests.cs" />
+    <Compile Include="Models\Producer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetStandard.Vent\DotNetStandard.Vent.csproj">
+      <Project>{EAFD5E20-0B6F-433C-8DA0-064FDDA635B8}</Project>
+      <Name>DotNetStandard.Vent</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
