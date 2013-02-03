@@ -6,6 +6,7 @@ namespace DotNetStandard.Tests.Models
     {
         private EventAggregator _vent = EventAggregator.Instance;
         public int Counter { get; set; }
+        public dynamic Param { get; set; }
         public Consumer()
         {
             Counter = 0;
@@ -14,9 +15,10 @@ namespace DotNetStandard.Tests.Models
             _vent.Subscribe(new EventTest("reconsume"), React);
         }
 
-        public void React()
+        public void React(dynamic param)
         {
             Counter++;
+            Param = param;
         }
     }
 }

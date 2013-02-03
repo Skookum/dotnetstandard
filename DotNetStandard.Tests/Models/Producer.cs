@@ -14,7 +14,7 @@ namespace DotNetStandard.Tests.Models
 
         public void TriggerEvent()
         {
-            _vent.Trigger(new EventTest(_ventName));
+            _vent.Trigger(new EventTest(_ventName), "stringParam");
         }
     }
 }
