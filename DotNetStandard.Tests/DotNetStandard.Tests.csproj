@@ -54,12 +54,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="EventAggregatorTests.cs" />
     <Compile Include="Models\EventTest.cs" />
     <Compile Include="EventTests.cs" />
     <Compile Include="Models\Producer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
