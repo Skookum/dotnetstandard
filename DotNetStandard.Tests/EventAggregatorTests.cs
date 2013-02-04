@@ -1,4 +1,5 @@
-﻿using DotNetStandard.Tests.Models;
+﻿using System;
+using DotNetStandard.Tests.Models;
 using DotNetStandard.Vent;
 using NUnit.Framework;
 
@@ -92,6 +93,30 @@ namespace DotNetStandard.Tests
             _vent.Unsubscribe(new EventTest("consume"), _consumer.React);
             _producer1.TriggerEvent();
             Assert.AreEqual(2, _consumer.Counter);
+            Assert.AreEqual("stringParam", _consumer.Param);
+        }
+
+        [Test]
+        public void TestSubscribedConsumerCanReactToMultipleActions()
+        {
+            Producer producer = new Producer("multipleactions");
+            Assert.AreEqual(0, _consumer.Counter);
+            producer.TriggerEvent();
+            Assert.AreEqual(3, _consumer.Counter);
+            Assert.AreEqual("stringParam", _consumer.Param);
+        }
+
+        [Test]
+        public void TestUnsubscribedMultipleActions()
+        {
+            Producer producer = new Producer("multipleactions");
+            Assert.AreEqual(0, _consumer.Counter);
+            producer.TriggerEvent();
+            Assert.AreEqual(3, _consumer.Counter);
+            Assert.AreEqual("stringParam", _consumer.Param);
+            _vent.Unsubscribe(new EventTest("multipleactions"), new Action<dynamic>[] {_consumer.React, _consumer.ReactTwo});
+            producer.TriggerEvent();
+            Assert.AreEqual(3, _consumer.Counter);
             Assert.AreEqual("stringParam", _consumer.Param);
         }
     }

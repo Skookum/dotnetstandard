@@ -9,17 +9,33 @@ namespace DotNetStandard.Vent
 
         public void Subscribe(Event vent, Action<dynamic> callback)
         {
-            if (_ventMap.ContainsKey(vent))
-                _ventMap[vent].Add(callback);
-            else
-                _ventMap.Add(vent, new HashSet<Action<dynamic>> {callback});
+            Subscribe(vent, new[] {callback});
+        }
+
+        public void Subscribe(Event vent, Action<dynamic>[] callbacks)
+        {
+            foreach (var callback in callbacks)
+            {
+                if (_ventMap.ContainsKey(vent))
+                    _ventMap[vent].Add(callback);
+                else
+                    _ventMap.Add(vent, new HashSet<Action<dynamic>> {callback});
+            }
         }
 
         public void Unsubscribe(Event vent, Action<dynamic> callback)
         {
-            if (!_ventMap.ContainsKey(vent))
-                return;
-            _ventMap[vent].Remove(callback);
+            Unsubscribe(vent, new[] {callback});
+        }
+
+        public void Unsubscribe(Event vent, Action<dynamic>[] callbacks)
+        {
+            foreach (var callback in callbacks)
+            {
+                if (!_ventMap.ContainsKey(vent))
+                    return;
+                _ventMap[vent].Remove(callback);
+            }
         }
 
         public void Trigger(Event vent, dynamic param)
