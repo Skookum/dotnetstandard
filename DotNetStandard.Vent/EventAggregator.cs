@@ -38,7 +38,7 @@ namespace DotNetStandard.Vent
             }
         }
 
-        public void Trigger(Event vent, dynamic[] parameters)
+        public void Trigger(Event vent, params object[] parameters)
         {
             if (!_ventMap.ContainsKey(vent))
                 return;
