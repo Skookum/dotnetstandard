@@ -14,7 +14,12 @@ namespace DotNetStandard.Tests.Models
 
         public void TriggerEvent()
         {
-            _vent.Trigger(new EventTest(_ventName), "stringParam");
+            _vent.Trigger(new EventTest(_ventName), new dynamic[]{"stringParam"});
+        }
+
+        public void TriggerEventWithMultipleParams()
+        {
+            _vent.Trigger(new EventTest(_ventName), new dynamic[] {"stringParam", 1, true});
         }
     }
 }

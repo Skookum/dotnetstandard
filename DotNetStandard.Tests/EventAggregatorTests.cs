@@ -44,7 +44,7 @@ namespace DotNetStandard.Tests
         [Test]
         public void TestCanTriggerNoopEvent()
         {
-            Assert.DoesNotThrow(() => _vent.Trigger(new EventTest("doesnotexist"), 0));
+            Assert.DoesNotThrow(() => _vent.Trigger(new EventTest("doesnotexist"), new dynamic[]{0}));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace DotNetStandard.Tests
         {
             _producer1.TriggerEvent();
             Assert.AreEqual(1, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
         }
 
         [Test]
@@ -60,13 +60,13 @@ namespace DotNetStandard.Tests
         {
             _producer1.TriggerEvent();
             Assert.AreEqual(1, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
             _producer1.TriggerEvent();
             Assert.AreEqual(2, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
             _producer1.TriggerEvent();
             Assert.AreEqual(3, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
         }
 
         [Test]
@@ -74,10 +74,10 @@ namespace DotNetStandard.Tests
         {
             _producer1.TriggerEvent();
             Assert.AreEqual(1, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
             _producer2.TriggerEvent();
             Assert.AreEqual(2, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
         }
 
         [Test]
@@ -85,15 +85,15 @@ namespace DotNetStandard.Tests
         {
             _producer1.TriggerEvent();
             Assert.AreEqual(1, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
             _producer2.TriggerEvent();
             Assert.AreEqual(2, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
 
             _vent.Unsubscribe(new EventTest("consume"), _consumer.React);
             _producer1.TriggerEvent();
             Assert.AreEqual(2, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace DotNetStandard.Tests
             Assert.AreEqual(0, _consumer.Counter);
             producer.TriggerEvent();
             Assert.AreEqual(3, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
         }
 
         [Test]
@@ -113,11 +113,21 @@ namespace DotNetStandard.Tests
             Assert.AreEqual(0, _consumer.Counter);
             producer.TriggerEvent();
             Assert.AreEqual(3, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
             _vent.Unsubscribe(new EventTest("multipleactions"), new Action<dynamic>[] {_consumer.React, _consumer.ReactTwo});
             producer.TriggerEvent();
             Assert.AreEqual(3, _consumer.Counter);
-            Assert.AreEqual("stringParam", _consumer.Param);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
+        }
+
+        [Test]
+        public void TestSubscribedConsumerCanReactToProducerTriggerWithMultipleParams()
+        {
+            _producer1.TriggerEventWithMultipleParams();
+            Assert.AreEqual(1, _consumer.Counter);
+            Assert.AreEqual("stringParam", _consumer.Param[0]);
+            Assert.AreEqual(1, _consumer.Param[1]);
+            Assert.AreEqual(true, _consumer.Param[2]);
         }
     }
 }

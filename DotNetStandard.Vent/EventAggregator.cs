@@ -38,13 +38,13 @@ namespace DotNetStandard.Vent
             }
         }
 
-        public void Trigger(Event vent, dynamic param)
+        public void Trigger(Event vent, dynamic[] parameters)
         {
             if (!_ventMap.ContainsKey(vent))
                 return;
 
             foreach (Action<dynamic> action in _ventMap[vent])
-                action.Invoke(param);
+                action.Invoke(parameters);
         }
 
         private EventAggregator()
