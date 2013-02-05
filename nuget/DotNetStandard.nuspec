@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DotNetStandard</id>
+    <version>0.0.1</version>
+    <authors>Skookum</authors>
+    <owners>Skookum</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/Skookum/dotnetstandard</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common interfaces and classes</description>
+    <copyright>Copyright 2013</copyright>
+    <tags>Standard, Common, Core</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
