@@ -58,6 +58,9 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="..\SolutionVersionInfo.cs">
+      <Link>Properties\SolutionVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="EventAggregatorTests.cs" />
     <Compile Include="Models\EventTest.cs" />
