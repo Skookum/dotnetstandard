@@ -17,19 +17,19 @@ namespace DotNetStandard.Cache
     /// Do not unseal and do not remove the
     /// initialition of TokenAuthenticationCache
     /// </summary>
-    public sealed class TokenCacheStrategy
+    public sealed class TokenCache
     {
         private readonly SystemCache.Cache _cache;
-        private static readonly TokenCacheStrategy _instance = new TokenCacheStrategy();
+        private static readonly TokenCache _instance = new TokenCache();
         private  int _expirationTime;
 
-        private TokenCacheStrategy()
+        private TokenCache()
         {
             _cache = HttpRuntime.Cache;
             _expirationTime = 15;
         }
 
-        public static TokenCacheStrategy Instance
+        public static TokenCache Instance
         {
             get { return _instance; }
         }
