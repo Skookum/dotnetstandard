@@ -21,10 +21,12 @@ namespace DotNetStandard.CacheStrategies
     {
         private readonly Cache _cache;
         private static readonly TokenCacheStrategy _instance = new TokenCacheStrategy();
+        private int _expirationTime;
 
         private TokenCacheStrategy()
         {
             _cache = HttpRuntime.Cache;
+            _expirationTime = 15;
         }
 
         public static TokenCacheStrategy Instance
@@ -32,16 +34,21 @@ namespace DotNetStandard.CacheStrategies
             get { return _instance; }
         }
 
+        public void SetExpirationTimeout(int expirationTimeout)
+        {
+            _expirationTime = expirationTimeout;
+        }
+
         public void Insert(string key)
         {
             _cache.Insert(key, key, null,
-                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(15));
+                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
         }
 
         public void Insert(string key, object objectToCache)
         {
             _cache.Insert(key, objectToCache, null,
-                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(15));
+                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
         }
 
         public bool Validate(string token)
