@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Caching;
+using SystemCache = System.Web.Caching;
 
-namespace DotNetStandard.CacheStrategies
+namespace DotNetStandard.Cache
 {
     /// <summary>
     /// Normally its not good practice to implement Singleton patterns
@@ -19,9 +19,9 @@ namespace DotNetStandard.CacheStrategies
     /// </summary>
     public sealed class TokenCacheStrategy
     {
-        private readonly Cache _cache;
+        private readonly SystemCache.Cache _cache;
         private static readonly TokenCacheStrategy _instance = new TokenCacheStrategy();
-        private int _expirationTime;
+        private  int _expirationTime;
 
         private TokenCacheStrategy()
         {
@@ -42,13 +42,13 @@ namespace DotNetStandard.CacheStrategies
         public void Insert(string key)
         {
             _cache.Insert(key, key, null,
-                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
+                 SystemCache.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
         }
 
         public void Insert(string key, object objectToCache)
         {
             _cache.Insert(key, objectToCache, null,
-                 Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
+                 SystemCache.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(_expirationTime));
         }
 
         public bool Validate(string token)
