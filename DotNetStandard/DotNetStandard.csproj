@@ -56,7 +56,7 @@
     <Compile Include="..\SolutionVersionInfo.cs">
       <Link>Properties\SolutionVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="CacheStrategies\TokenCacheStrategy.cs" />
+    <Compile Include="Cache\TokenCache.cs" />
     <Compile Include="HashGenerators\HashGenerator.cs" />
     <Compile Include="Interfaces\IIdentifiable.cs" />
     <Compile Include="Interfaces\INameable.cs" />
