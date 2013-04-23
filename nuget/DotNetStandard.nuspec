@@ -3,8 +3,8 @@
   <metadata>
     <id>DotNetStandard</id>
     <version>0.0.1</version>
-    <authors>Skookum</authors>
-    <owners>Skookum</owners>
+    <authors>skookum,elaforc,klaforce,ptfaulkner</authors>
+    <owners>skookum,elaforc,klaforce,ptfaulkner</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/Skookum/dotnetstandard</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
