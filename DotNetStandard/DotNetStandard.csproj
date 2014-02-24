@@ -61,6 +61,7 @@
     <Compile Include="HashGenerators\HashGenerator.cs" />
     <Compile Include="Interfaces\IIdentifiable.cs" />
     <Compile Include="Interfaces\INameable.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
