@@ -13,7 +13,6 @@ namespace DotNetStandard.Tests
         {
             _vent1 = new EventTest("testevent1");
             _vent2 = new EventTest("testevent2");
-            //comment
         }
 
         [Test]
